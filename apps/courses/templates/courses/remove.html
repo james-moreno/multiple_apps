@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Remove Course</title>
+        <style media="screen">
+            form {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Are you sure you wish to remove this course?</h1>
+        <p>Course Name: {{course.course_name}}</p>
+        <p>Description: {{course.description}}</p>
+        <form action="{% url 'courses:remove_confirm' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="course_id" value="{{course.id}}">
+            <input type="submit" value="Remove">
+        </form>
+        <form action="{% url 'courses:keep' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Keep">
+        </form>
+    </body>
+</html>
